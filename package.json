@@ -1,0 +1,19 @@
+{
+  "name": "folderoneelectronapp",
+  "version": "1.0.0",
+  "description": "ElectronApp WebSocket KB4CK",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaylabri95/FirstElectronApp.git"
+  },
+  "author": "KB",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaylabri95/FirstElectronApp/issues"
+  },
+  "homepage": "https://github.com/kaylabri95/FirstElectronApp#readme"
+}
