@@ -1,20 +1,22 @@
+const path = require('path');
 const { app, BrowserWindow } = require('electron');
 
-const createWindow = () => {
-  const win = new BrowserWindow({
+const createMainWindow = () => {
+  const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    // closable boolean (optional) macOS Windows - Whether window is closable. This is not implemented on Linux. Default is true.
   });
 
-  win.loadFile('index.html');
+  mainWindow.loadFile(path.join('index.html'));
 };
 
 app.whenReady().then(() => {
-  createWindow();
+  createMainWindow();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      createMainWindow();
     }
   });
 });
@@ -24,3 +26,4 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+

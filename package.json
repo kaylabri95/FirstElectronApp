@@ -1,13 +1,11 @@
 {
-  "name": "folderoneelectronapp",
+  "name": "First-Electron-App",
+  "productName": "Network Communication App",
   "version": "1.0.0",
   "description": "ElectronApp WebSocket KB4CK",
   "main": "main.js",
   "scripts": {
-<<<<<<< HEAD
     "start": "electron .",
-=======
->>>>>>> e15eb45aaec92487b3c875ff58a760103d632b98
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

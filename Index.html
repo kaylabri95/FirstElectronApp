@@ -11,12 +11,38 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Hello from Electron renderer!</title>
   </head>
   <body>
-    <h1>Hello from Electron renderer!</h1>
-    <p>👋</p>
-    <p id="info"></p>
+
+    <div class="m-2 p-2 container">
+      <div class="card">
+      <h3 class="card-header">Electron WebSocket App</h3>
+  
+          <div class="m-2 form-group">
+              <select id="IPAddresses" class="form-control" required>
+                  <option value="Option 1">"ws://<IP>/<API>/"</option>
+                  <option value="Option 2">"ws://<IP>/<API>/"</option>
+                  <option value="Option 3">"ws://<IP>/<API>/"</option>
+                  </select>
+          </div>
+
+          <div class="m-2 p-2 d-flex justify-content-between">
+              <button type="button" id="addBtn" class="btn btn-secondary btn-sm">Connect</button>
+              <button type="button" id="removeBtn" class="btn btn-secondary btn-sm">Disconnect</button>
+          </div>
+  
+          <div>
+            <div>
+              <input type="text" id="dataToSocket" class="form-control">
+            </div>
+          </div>
+          <div class="m-2 d-flex flex-row-reverse">        
+              <button type="submit" id="submitBtn" class="btn btn-secondary btn-sm">Submit</button>
+          </div>
+      </div>
+      </div>
+    
   </body>
-  <script src="./renderer.js"></script>
 </html>
