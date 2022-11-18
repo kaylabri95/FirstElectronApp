@@ -1,43 +1,46 @@
-// Terrible layout, but everything Im going to use will be put into this file for the backend and cleanedup on Monday
-
-// PSUEDO CODE FOR SERVER 
-// This websocket should be created by using ${IP + API} upon cicking the connect button. 
-
-// Selecting the IP address from the drop down should happen on page load. The OS command should be first. This os command returns the available IP addresses in an object. which is looped through to provide the dropdown options. Each item should be listed by the address value pulled from the object. Once an option is selected, it feeds the ${IPaddress} to the API url and enables the connect button. the disconnect button is more simple and is built by simply using the end or disconnect command .on(click, disconnect). 
+const ws = new require('ws');
+const wss = new WebSocketServer({ port: 2121});
+const { on } = require('events');
 
 
-// form.onsubmit = (event) => { event.preventDefault(); addTodo(input.value); }
+const clients = new Set();
 
-
-
-
-
-// Websocket client side
-const socket = new WebSocket('ws://localhost:8000');
-
-socket.onopen = (event) => {
-    // on connection do something
-    socket.send('WebSocket opened');
-};
-
-socket.onmessage = (event) => {
-    // message from server
-    console.log(event.data);
+http.createServer((req, res) => {
+    // here we handle websocket connections, if other kinds of connections need to be accounted for, you need to also handle them here
+    wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onSocketConnect);
 });
 
+// the next two things do the same thing but Im scared to choose yet
 
-// Node OS Module for discovering local network adapters that I can connect to 
-// Node.js program to demonstrate the   
-// os.networkInterfaces() Method
-  
-// Allocating os module
-const os = require('os');
-  
-// Print os.networkInterfaces() value
-console.log(os.networkInterfaces());
+wss.on('connection', function connection(ws) {
+    ws.on('message', function message(data) {
+      console.log('received: %s', data);
+    });
+});
+
+function onSocketConnect(ws){
+    clients.add(ws);
+
+    ws.on('message', function(message) {
+        // the below limits the msgs length to 50
+        message = message.slice(1,50); 
+
+    for(let client of clients){
+        client.send(message);
+    }
+});
+}
 
 
-// The second half of this page is built to send data to and from the IP address selected. The server will make the connection once the connect button button is pressed, the handshake occurs, and the webpage provides a space for the data to be sent. the send button contains a function that is basically (wait or is this client side server function??? socket.onmessage = (event) => {console.log(event.data);}); )
 
 
-// The end of this page should ensure all websockets are disconnected when the browser is closed.
+// How to get the IP address of the client?
+// The remote IP address can be obtained from the raw socket.
+
+// import { WebSocketServer } from 'ws';
+
+// const wss = new WebSocketServer({ port: 8080 });
+
+// wss.on('connection', function connection(ws, req) {
+//   const ip = req.socket.remoteAddress;
+// });

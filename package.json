@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/kaylabri95/FirstElectronApp/issues"
   },
-  "homepage": "https://github.com/kaylabri95/FirstElectronApp#readme"
+  "homepage": "https://github.com/kaylabri95/FirstElectronApp#readme",
+  "dependencies": {
+    "ws": "^8.11.0"
+  }
 }
