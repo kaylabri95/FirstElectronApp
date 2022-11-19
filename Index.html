@@ -12,35 +12,33 @@
       content="default-src 'self'; script-src 'self'"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Hello from Electron renderer!</title>
+    <title>Electron WebSocket App by KB</title>
   </head>
   <body>
 
     <div class="m-2 p-2 container">
       <div class="card">
-      <h3 class="card-header">Electron WebSocket App</h3>
+      <h3 class="card-header">Talk to local area network adapters!!!</h3>
   
           <div class="m-2 form-group">
               <select id="IPAddresses" class="form-control" required>
-                  <option value="Option 1">"ws://<IP>/<API>/"</option>
-                  <option value="Option 2">"ws://<IP>/<API>/"</option>
-                  <option value="Option 3">"ws://<IP>/<API>/"</option>
-                  </select>
+               <option value="none" selected disabled hidden>Local Area Network Adapters</option>
+                <option value="Option 1">IP Address</option>
+                </select>
           </div>
 
           <div class="m-2 p-2 d-flex justify-content-between">
-              <button type="button" id="conBtn" class="btn btn-secondary btn-sm">Connect</button>
-              <button type="button" id="disconBtn" class="btn btn-secondary btn-sm">Disconnect</button>
+              <button type="button" id="conBtn"  onclick="conToSocket" class="btn btn-secondary btn-sm">Connect</button>
+              <button type="button" id="disconBtn" onclick="disconToSocket" class="btn btn-secondary btn-sm">Disconnect</button>
           </div>
   
           <div>
-            <form name="publish">
+            <form name="dataInputForm">
               <input type="text" name="message">
-              <input type="submit" value="Send">
             </form>
           </div>
           <div class="m-2 d-flex flex-row-reverse">        
-              <button type="submit" id="submitBtn" class="btn btn-secondary btn-sm">Submit</button>
+              <button type="button" id="sendBtn" onclick="sendData" class="btn btn-secondary btn-sm">Send Data</button>
           </div>
       </div>
       </div>

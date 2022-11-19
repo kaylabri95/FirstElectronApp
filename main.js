@@ -5,7 +5,6 @@ const createMainWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    // closable boolean (optional) macOS Windows - Whether window is closable. This is not implemented on Linux. Default is true.
   });
 
   mainWindow.loadFile(path.join('index.html'));

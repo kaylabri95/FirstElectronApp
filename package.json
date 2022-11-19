@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/kaylabri95/FirstElectronApp#readme",
   "dependencies": {
+    "electron": "^21.3.0",
     "ws": "^8.11.0"
   }
 }
