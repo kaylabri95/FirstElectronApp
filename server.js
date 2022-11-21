@@ -1,63 +1,80 @@
 // Requirements
-const WebSocketServer = "ws";
 const { on } = require('events');
 const os = require('os');
-const server = createServer();
-const wss = new WebSocketServer({ port: 2121});
+
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
-
+const { WebSocketServer } =  require('ws');
 
 // Window pops up
-const createMainWindow = () => {
-    const mainWindow = new BrowserWindow({
+function createWindow () {
+    const win = new BrowserWindow({
       width: 800,
       height: 600,
-    });
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js')
+      }
+    })
   
-    mainWindow.loadFile(path.join('index.html'));
-  };
+    win.loadFile('index.html')
+  }
   
   app.whenReady().then(() => {
-    createMainWindow();
+    createWindow()
   
     app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) {
-        createMainWindow();
+        createWindow()
       }
-    });
-  });
+    })
+  })
+  
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      app.quit()
+    }
+  })
   
 // Dropdown list
-// Get list of os.networkInterfaces() values
-listIPs(() => {
-    os.networkInterfaces().
-    let addresses = []
-    (Object.values(obj));
-    
-    // let result = objArray.map(a => a.foo);
-    
-    
-});
-console.log(os.networkInterfaces());
+// Get list of os.networkInterfaces() values  // plug them into the dropdown
+const interfaces = os.networkInterfaces();
 
+const ipaDropDown = document.getElementById("ipaDropDown")
+
+function dropDownCreation(){
+for(key in interfaces){
+    for(network in interfaces[key]){
+        const n = interfaces[key][network];
+if(n.family === 4){
+    let option = document.createElement("option");
+    option.setAttribute('value', data[key][network].address);
+  
+    let optionText = document.createTextNode([key][network].address);
+    option.appendChild(optionText);
+    ipaDropDown.appendChild(option);
+  }
+    // const optionalIPAddress = []
+    // optionalIPAddress.push(interfaces[key][network].address)
+    // console.log(optionalIPAddress)
+};
+};
+};
+dropDownCreation();
+
+// Buttons turning off and on
+const button = document.querySelector("button");
+button.setAttribute("disabled", "");
 
 // Connect button
-let Server = WebSocket('ws://169.254.255.66:2121/');
-
-conToSocket(() => {
-    let socket = new WebSocket(`ws://${selectedIPAddress}:2121/`);
-  });
-  
-  socket.onopen = (event) => {
-      alert("[open] Connection established");
-      socket.send('WebSocket opened');
+function conToSocket(){
+    const webSocket = new WebSocket('ws://127.0.0.1:2121/');
+    const wss = new WebSocketServer({ port: 2121});
+      
+    webSocket.onopen = (event) => {
+        alert("[open] Connection established");
+        socket.send('WebSocket opened');
   };
-
-http.createServer((req, res) => {
-    // here we handle websocket connections, if other kinds of connections need to be accounted for, you need to also handle them here
-    wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onSocketConnect);
-});
+  };
 
 // Disconnect Button
 disconToSocket(() => {
@@ -67,11 +84,13 @@ disconToSocket(() => {
 // Text field
 
 // send button
-sendData() = () => {
+function sendData() {
     let outgoingMessage = this.message.value;
     socket.send(outgoingMessage);
     return false;
   };
+
+
 // On error
 socket.onerror = function(error) {
     alert(`[error]`);

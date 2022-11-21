@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Electron WebSocket App by KB</title>
+    <script src="server.js"></script>
   </head>
   <body>
 
@@ -21,10 +22,10 @@
       <h3 class="card-header">Talk to local area network adapters!!!</h3>
   
           <div class="m-2 form-group">
-              <select id="IPAddresses" class="form-control" required>
-               <option value="none" selected disabled hidden>Potential Connections</option>
+              <select id="ipaDropDown" class="form-control" required>
+                <option value="none" selected disabled hidden>Potential Connections</option>
                 <option value="Option 1">IP Address</option>
-                </select>
+              </select>
           </div>
 
           <div class="m-2 p-2 d-flex justify-content-between">
